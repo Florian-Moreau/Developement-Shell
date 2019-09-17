@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#Florian Moreau
+#Licence Pro MI-ASSR
+#Script permettant la conversion de fichier PNG en jpg
+#Langage Shell Linux
+
+#Boucle parcourant un dossier
+for fichier in /usr/share/icons/gnome/512x512/mimetypes/*.png
+do
+    nom=$(basename $fichier .png) #Récupération du nom du fichier sans son extension
+    convert $fichier ~/ef4/tp/tp6/$nom.jpg #Conversion en jpg
+done

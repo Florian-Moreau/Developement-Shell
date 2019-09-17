@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#Florian Moreau
+#Licence Pro MI-ASSR
+#Script permettant l'archivage du HOME Linux'
+#Langage Shell Linux
+
+
+chemin=/media/moreaflo/06229E08229DFCBD/ #Chemin
+now=$(date +"%d-%m-%Y")
+echo -n "Entrez un nom de dossier complet : " #Nom du dossier de sauvegarde
+read reponse
+echo "Nom du dossier : $reponse"
+
+if test -e $chemin #Test de l'existence du peripherique
+then
+
+    if test -e $chemin$reponse #Test existence du dossier de sauvegarde
+    then
+        echo "Le dossier $reponse existe"
+        zip -r9 $chemin$reponse/$now.zip ~ #Compresse ~
+    else
+        echo "Le dossier $reponse est créé"
+        mkdir $chemin$reponse #Creation du dossier au chemin indiquer dans $chemin
+        zip -r9 $chemin$reponse/$now.zip ~ #Compresse ~
+    fi
+
+else #Le peripherique est non lu ? Alors un message apparait
+    echo "Peripherique de sauvegarde non lu"
+fi
